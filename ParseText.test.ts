@@ -6,6 +6,7 @@ Lorem ipsum dolor sit amet. Et inventore consequatur qui incidunt consequuntur u
 Et magni quia est dicta excepturi ab deleniti optio et earum quis 33 laudantium sunt eos asperiores doloremque id repudiandae praesentium. Ut distinctio galisum est molestiae reprehenderit in dolorum quam sed aliquid architecto qui enim enim. Id dicta voluptas ut accusantium numquam et deleniti animi! Non animi deleniti est sunt voluptatem ex voluptatem molestiae est quas voluptatibus!
 Vel temporibus quia a praesentium quia eum nihil exercitationem. Sit molestiae repellat hic voluptatem obcaecati sit quibusdam dolore sit rerum voluptas non neque porro qui beatae accusantium est impedit quibusdam. Et repellat vitae qui inventore omnis ad autem quia.
 and and and and and and and and and and and and and and and and and and and and and
+et. et. et. et. et. et. et. et. et. et. et. et. et. et. et. et. et. et. et. et. et.
     `
 
     test('it returns top N words', () => {
@@ -29,5 +30,10 @@ and and and and and and and and and and and and and and and and and and and and 
     test('it excludes words from a default exclusion list if none is given', () => {
         let top5Words = getTopNWords(text, 5)
         expect(top5Words.includes('and')).toBe(false)
+    })
+
+    test('it removes punctuation before returning words', () => {
+        let top5Words = getTopNWords(text)
+        expect(top5Words.includes('et.')).toBe(false)
     })
 })
