@@ -1,4 +1,4 @@
-import * as fs from 'fs'
+import * as https from 'https'
 import { getTopNWords } from './ParseText'
 
 if (process.argv.length < 3) {
@@ -6,8 +6,17 @@ if (process.argv.length < 3) {
     process.exit(1)
 }
 
-let filename: string = process.argv[2]
-fs.readFile(filename, 'utf-8', (err: NodeJS.ErrnoException, data: string) => {
-    if (err) throw err
-    console.log(getTopNWords(data))
+let url: string = process.argv[2]
+https.get(url, resp => {
+    let data = ''
+
+    resp.on('data', chunk => {
+        data += chunk
+    })
+
+    resp.on('end', () => {
+        console.log(getTopNWords(data))
+    })
+}).on("error", err => {
+    console.log("Error: " + err.message)
 })
